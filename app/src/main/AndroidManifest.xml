@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sallskapet">
         <activity
+            android:name=".BokstavmotdjurActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SpiderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SimonsaysActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HittaparenActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
