@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sallskapet">
         <activity
+            android:name=".HangmanActivity"
+            android:exported="false" />
+        <activity
             android:name=".BokstavmotdjurActivity"
             android:exported="false" />
         <activity

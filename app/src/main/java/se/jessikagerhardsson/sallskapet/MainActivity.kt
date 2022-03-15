@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 
-//TODO Bilderna på startskärmen syns inte
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //Simon says
+        //Anka
         val game = findViewById<ImageView>(R.id.gameImageView)
         game.setOnClickListener {
             val intent = Intent(this, SimonsaysActivity::class.java)
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Hittaparen
+        //Bläckfisk
         val pair = findViewById<ImageView>(R.id.pairImageView)
         pair.setOnClickListener {
             val intent = Intent(this, HittaparenActivity::class.java)
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //bokstav mot ord
+        //Chinchilla
         val match = findViewById<ImageView>(R.id.matchImageView)
         match.setOnClickListener {
             val intent = Intent(this, HittaparenActivity::class.java)
@@ -41,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //räkna spindlarna
+        //Spindel
         val spider = findViewById<ImageView>(R.id.spiderImageView)
         spider.setOnClickListener {
             val intent = Intent(this, HittaparenActivity::class.java)
@@ -50,11 +54,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         //hur många hundar
+        //Ekorre
         val dog = findViewById<ImageView>(R.id.dogsImageView)
         dog.setOnClickListener {
             val intent = Intent(this, DogActivity::class.java)
             startActivity(intent)
             Log.i("HEJ", "hundar")
+        }
+
+        //Hänga gubbe
+        //Älg
+        val hangman = findViewById<ImageView>(R.id.hangmanButton)
+        hangman.setOnClickListener {
+            val intent = Intent(this, HangmanActivity::class.java)
+            startActivity(intent)
         }
 
     }
