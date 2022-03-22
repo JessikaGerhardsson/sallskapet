@@ -3,8 +3,10 @@ package se.jessikagerhardsson.sallskapet
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 
 class Animal {
     var imagenumber = 0
@@ -17,6 +19,7 @@ class DogActivity : AppCompatActivity() {
         var animals = mutableListOf<Animal>()
         var animalsleft = mutableListOf<Animal>()
         var correctPosition = 0
+        var score = 0
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -130,9 +133,12 @@ class DogActivity : AppCompatActivity() {
                 {
                     // HURRA RÄTT
                     correctword()
+                    score ++
                 } else {
                     // BU FEL
                     wrongword()
+                    score --
+
                 }
             }
             ord2.setOnClickListener {
@@ -140,9 +146,12 @@ class DogActivity : AppCompatActivity() {
                 {
                     // HURRA RÄTT
                     correctword()
+                    score ++
                 } else {
                     // BU FEL
                     wrongword()
+                    score --
+
                 }
             }
             ord3.setOnClickListener {
@@ -150,10 +159,17 @@ class DogActivity : AppCompatActivity() {
                 {
                     // HURRA RÄTT
                     correctword()
+                    score ++
                 } else {
                     // BU FEL
                     wrongword()
+                    score --
+
                 }
+            }
+
+            findViewById<Button>(R.id.newGameButton).setOnClickListener {
+                newGame()
             }
         }
 
@@ -161,11 +177,13 @@ class DogActivity : AppCompatActivity() {
         {
             Log.i("PIXDEBUG", "RÄTT")
             animalsleft.removeAt(0)
+            Toast.makeText(this, "Rätt svar", Toast.LENGTH_LONG).show()
 
             if (animalsleft.size == 0)
             {
                 //Slut på djur
                 Log.i("HEJ", "SLUT")
+                gameOver()
             } else {
                 newword()
             }
@@ -174,7 +192,17 @@ class DogActivity : AppCompatActivity() {
         fun wrongword()
         {
             Log.i("PIXDEBUG", "FEL")
+            animalsleft.removeAt(0)
+            Toast.makeText(this, "Fel svar", Toast.LENGTH_LONG).show()
 
+            if (animalsleft.size == 0)
+            {
+                //Slut på djur
+                Log.i("HEJ", "SLUT")
+                gameOver()
+            } else {
+                newword()
+            }
         }
 
         fun newword()
@@ -215,9 +243,22 @@ class DogActivity : AppCompatActivity() {
             bild1.setImageResource(animalsleft[0].imagenumber)
         }
 
-        fun clickWord()
+        fun gameOver()
         {
-
+            if(animalsleft.size == 0)
+            {
+                //Pop up ruta som säger att spelet är slut, visar poängen, användaren
+                // får välja nytt spel elelr startsidan
+            }
         }
+
+    fun newGame()
+    {
+        animals.shuffle()
+
+        animalsleft = animals.toList().toMutableList()
+
+        newword()
+    }
 
     }
