@@ -17,34 +17,19 @@ class SimonsaysActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simonsays)
 
-        //Fetch buttons and textviews
-        //val title = findViewById<TextView>(R.id.titleText)
-        val scoreText = findViewById<TextView>(R.id.scoreText)
+
+
+        newGame()
+
+        findViewById<Button>(R.id.restartBtn).setOnClickListener {
+            newGame()
+        }
+
         val green = findViewById<Button>(R.id.greenBtn)
         val yellow = findViewById<Button>(R.id.yellowBtn)
         val blue = findViewById<Button>(R.id.blueBtn)
         val red = findViewById<Button>(R.id.redBtn)
-        val restart = findViewById<Button>(R.id.restartBtn)
-        //val activitiesArray: Array<Class<out AppCompatActivity>> = arrayOf(Green::class.java, Yellow::class.java, Blue::class.java, Red::class.java)
 
-
-        //Get count, index and color from intent
-        //var score = intent.getIntExtra("score", -2)
-        //var count = intent.getIntExtra("count", -3)
-        //val colors: ArrayList<String> = intent.getStringArrayListExtra("colors")!!
-
-        //Update displayed score
-        scoreText.text = hej.toString()
-        //scoreText.text = "HEJ"
-        //Log.i("HEJ", "scoretext = $hej")
-
-
-
-        correctSeq.add((0..3).random())
-
-        doHighlight(0)
-
-        //on click listeners for each button
 
         green.setOnClickListener {
 
@@ -72,10 +57,6 @@ class SimonsaysActivity : AppCompatActivity() {
             playerSeq.add(3)
             checkCorrect()
         }
-        restart.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
 
 
 
@@ -99,21 +80,26 @@ class SimonsaysActivity : AppCompatActivity() {
 
             if(playerSeq.size == correctSeq.size)
             {
+                hej ++
+                findViewById<TextView>(R.id.scoreText).text = hej.toString()
+                Log.i("HEJ", "hej = $hej")
                 playerSeq.clear()
-                Toast.makeText(this, "Correct", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show()
 
                 var random: Int = (0..3).random()
 
+
+
                 correctSeq.add(random)
                 doHighlight(0)
-                hej ++
-                Log.i("HEJ", hej.toString())
 
             }
 
         } else {
             // VISA FÖRLORA
-            Toast.makeText(this, "YOU LOSE", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "YOU LOSE", Toast.LENGTH_SHORT).show()
+            hej = 0
+            findViewById<TextView>(R.id.scoreText).text = hej.toString()
         }
 
     }
@@ -124,13 +110,11 @@ class SimonsaysActivity : AppCompatActivity() {
         {
             // Visa text "din tur"
             // playerturn = true
+
             return
         }
 
-        val green = findViewById<Button>(R.id.greenBtn)
-        val yellow = findViewById<Button>(R.id.yellowBtn)
-        val blue = findViewById<Button>(R.id.redBtn)
-        val red = findViewById<Button>(R.id.redBtn)
+
 
         var animButton : Button? = null
 
@@ -144,7 +128,7 @@ class SimonsaysActivity : AppCompatActivity() {
         }
         if(correctSeq[animnumber] == 2)
         {
-            animButton = findViewById<Button>(R.id.redBtn)
+            animButton = findViewById<Button>(R.id.blueBtn)
         }
         if(correctSeq[animnumber] == 3)
         {
@@ -154,18 +138,64 @@ class SimonsaysActivity : AppCompatActivity() {
 
         animButton!!.animate().apply {
             alpha(0f)
-            duration = 2000
+            duration = 500
         }.withEndAction {
             animButton!!.animate().apply {
                 alpha(1f)
-                duration = 2000
+                duration = 500
             }.withEndAction {
                 doHighlight(animnumber +1)
             }.start()
         }.start()
 
 
-    }
 
 
     }
+
+
+
+
+
+
+
+    fun newGame() {
+        hej = 0
+
+        playerSeq.clear()
+        correctSeq.clear()
+
+        //Fetch buttons and textviews
+
+        val scoreText = findViewById<TextView>(R.id.scoreText)
+
+
+
+
+
+
+
+        scoreText.text = hej.toString()
+
+
+        var infotext = findViewById<TextView>(R.id.infoTextView)
+
+        infotext.text = "VÄNTA"
+
+
+        correctSeq.add((0..3).random())
+
+        doHighlight(0)
+
+        //infotext.text = "DIN TUR"
+
+
+    }
+}
+
+
+
+
+
+
+

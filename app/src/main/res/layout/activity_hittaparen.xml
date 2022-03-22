@@ -7,16 +7,23 @@
     android:background="@drawable/gradient_background4"
     tools:context=".HittaparenActivity">
 
-    <TextView
-        android:id="@+id/textView3"
+
+
+    <Button
+        android:id="@+id/newGameButtonmemory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="214dp"
-        android:layout_marginTop="323dp"
-        android:layout_marginEnd="139dp"
-        android:layout_marginBottom="389dp"
-        android:text="hitta paren"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Nytt spel"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myRV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/newGameButtonmemory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -1,5 +1,7 @@
 package se.jessikagerhardsson.sallskapet
 
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 class Animal {
     var imagenumber = 0
@@ -27,87 +30,87 @@ class DogActivity : AppCompatActivity() {
 
 
 
-            var animal1 = Animal()
+            val animal1 = Animal()
             animal1.imagenumber = R.drawable.dog1
             animal1.animalname = "1"
             animals.add(animal1)
-            var animal2 = Animal()
+            val animal2 = Animal()
             animal2.imagenumber = R.drawable.dog2
             animal2.animalname = "2"
             animals.add(animal2)
-            var animal3 = Animal()
+            val animal3 = Animal()
             animal3.imagenumber = R.drawable.dog3
             animal3.animalname = "3"
             animals.add(animal3)
-            var animal4 = Animal()
+            val animal4 = Animal()
             animal1.imagenumber = R.drawable.spider0
             animal1.animalname = "0"
             animals.add(animal4)
-            var animal5 = Animal()
+            val animal5 = Animal()
             animal2.imagenumber = R.drawable.dog4
             animal2.animalname = "4"
             animals.add(animal5)
-            var animal6 = Animal()
+            val animal6 = Animal()
             animal3.imagenumber = R.drawable.dog5
             animal3.animalname = "5"
             animals.add(animal6)
-            var animal7 = Animal()
+            val animal7 = Animal()
             animal1.imagenumber = R.drawable.dog6
             animal1.animalname = "6"
             animals.add(animal7)
-            var animal8 = Animal()
+            val animal8 = Animal()
             animal2.imagenumber = R.drawable.dog7
             animal2.animalname = "7"
             animals.add(animal8)
-            var animal9 = Animal()
+            val animal9 = Animal()
             animal3.imagenumber = R.drawable.dog8
             animal3.animalname = "8"
             animals.add(animal9)
-            var animal10 = Animal()
+            val animal10 = Animal()
             animal1.imagenumber = R.drawable.dog9
             animal1.animalname = "9"
             animals.add(animal10)
-            var animal11 = Animal()
+            val animal11 = Animal()
             animal2.imagenumber = R.drawable.dog10
             animal2.animalname = "10"
-            animals.add(animal10)
-            var animal12 = Animal()
+            animals.add(animal11)
+            val animal12 = Animal()
             animal3.imagenumber = R.drawable.dog11
             animal3.animalname = "11"
-            animals.add(animal11)
-            var animal13 = Animal()
+            animals.add(animal12)
+            val animal13 = Animal()
             animal1.imagenumber = R.drawable.dog12
             animal1.animalname = "12"
-            animals.add(animal12)
-            var animal14 = Animal()
+            animals.add(animal13)
+            val animal14 = Animal()
             animal2.imagenumber = R.drawable.dog13
             animal2.animalname = "13"
-            animals.add(animal13)
-            var animal15 = Animal()
+            animals.add(animal14)
+            val animal15 = Animal()
             animal3.imagenumber = R.drawable.dog14
             animal3.animalname = "14"
-            animals.add(animal14)
-            var animal16 = Animal()
+            animals.add(animal15)
+            val animal16 = Animal()
             animal1.imagenumber = R.drawable.dog15
             animal1.animalname = "15"
-            animals.add(animal15)
-            var animal17 = Animal()
+            animals.add(animal16)
+            val animal17 = Animal()
             animal2.imagenumber = R.drawable.dog16
             animal2.animalname = "16"
-            animals.add(animal16)
-            var animal18 = Animal()
+            animals.add(animal17)
+            val animal18 = Animal()
             animal3.imagenumber = R.drawable.dog17
             animal3.animalname = "17"
-            animals.add(animal17)
-            var animal19 = Animal()
+            animals.add(animal18)
+            val animal19 = Animal()
             animal1.imagenumber = R.drawable.dog18
             animal1.animalname = "18"
             animals.add(animal19)
-            var animal20 = Animal()
+            val animal20 = Animal()
             animal2.imagenumber = R.drawable.dog19
             animal2.animalname = "19"
             animals.add(animal20)
-            var animal21 = Animal()
+            val animal21 = Animal()
             animal2.imagenumber = R.drawable.dog20
             animal2.animalname = "20"
             animals.add(animal21)
@@ -121,10 +124,10 @@ class DogActivity : AppCompatActivity() {
             //var correctanswer = mutableListOf<Int>()
             //correctanswer.add((0..2).random())
 
-            var bild1 = findViewById<ImageView>(R.id.bild)
-            var ord1 = findViewById<TextView>(R.id.ord1)
-            var ord2 = findViewById<TextView>(R.id.ord2)
-            var ord3 = findViewById<TextView>(R.id.ord3)
+
+            val ord1 = findViewById<TextView>(R.id.ord1)
+            val ord2 = findViewById<TextView>(R.id.ord2)
+            val ord3 = findViewById<TextView>(R.id.ord3)
 
             newword()
 
@@ -249,6 +252,21 @@ class DogActivity : AppCompatActivity() {
             {
                 //Pop up ruta som säger att spelet är slut, visar poängen, användaren
                 // får välja nytt spel elelr startsidan
+
+                var builder = AlertDialog.Builder(this)
+                builder.setTitle("Spelet är slut")
+                builder.setMessage("Dina poäng är: ${score.toString()}")
+                builder.setPositiveButton("Nytt spel", DialogInterface.OnClickListener { dialogInterface, i ->
+                    newGame()
+
+                })
+                builder.setNegativeButton("Meny", DialogInterface.OnClickListener { dialogInterface, i ->
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                })
+                var alert = builder.create()
+                alert.show()
+
             }
         }
 
