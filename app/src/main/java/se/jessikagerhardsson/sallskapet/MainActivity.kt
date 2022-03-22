@@ -23,35 +23,17 @@ class MainActivity : AppCompatActivity() {
             Log.i("HEJ", "simon says")
         }
 
-        //Hittaparen
-        //Bläckfisk
-        val pair = findViewById<ImageView>(R.id.pairImageView)
-        pair.setOnClickListener {
-            val intent = Intent(this, HittaparenActivity::class.java)
-            intent.putExtra("knapp", 1)
-            startActivity(intent)
-            Log.i("HEJ", "hitta paren")
-        }
+
 
         //bokstav mot ord
         //Chinchilla
         val match = findViewById<ImageView>(R.id.matchImageView)
         match.setOnClickListener {
-            val intent = Intent(this, HittaparenActivity::class.java)
-            intent.putExtra("knapp", 2)
+            val intent = Intent(this, ChoosehittaparenActivity::class.java)
             startActivity(intent)
-            Log.i("HEJ", "bokstav mot djur")
         }
 
-        //räkna spindlarna
-        //Spindel
-        val spider = findViewById<ImageView>(R.id.spiderImageView)
-        spider.setOnClickListener {
-            val intent = Intent(this, HittaparenActivity::class.java)
-            intent.putExtra("knapp", 3)
-            startActivity(intent)
-            Log.i("HEJ", "spindlar")
-        }
+
 
         //hur många hundar
         //Ekorre

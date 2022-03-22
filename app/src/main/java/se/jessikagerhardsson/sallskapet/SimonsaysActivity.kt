@@ -11,6 +11,7 @@ import android.widget.Toast
 class SimonsaysActivity : AppCompatActivity() {
     var correctSeq = mutableListOf<Int>()
     var playerSeq = mutableListOf<Int>()
+    var hej = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,25 +26,19 @@ class SimonsaysActivity : AppCompatActivity() {
         val red = findViewById<Button>(R.id.redBtn)
         val restart = findViewById<Button>(R.id.restartBtn)
         //val activitiesArray: Array<Class<out AppCompatActivity>> = arrayOf(Green::class.java, Yellow::class.java, Blue::class.java, Red::class.java)
-        var temp = ""
+
 
         //Get count, index and color from intent
-        var score = intent.getIntExtra("score", -2)
-        var count = intent.getIntExtra("count", -3)
-        val colors: ArrayList<String> = intent.getStringArrayListExtra("colors")!!
+        //var score = intent.getIntExtra("score", -2)
+        //var count = intent.getIntExtra("count", -3)
+        //val colors: ArrayList<String> = intent.getStringArrayListExtra("colors")!!
 
         //Update displayed score
-        scoreText.text = score.toString()
+        scoreText.text = hej.toString()
+        //scoreText.text = "HEJ"
+        //Log.i("HEJ", "scoretext = $hej")
 
-        //Update title text
-        if (score != count) {
-            temp = "Color: " + colors[count + 1]
 
-        } else {
-            temp = "Simon says " + colors[count]
-
-        }
-        //title.text = temp
 
         correctSeq.add((0..3).random())
 
@@ -111,6 +106,8 @@ class SimonsaysActivity : AppCompatActivity() {
 
                 correctSeq.add(random)
                 doHighlight(0)
+                hej ++
+                Log.i("HEJ", hej.toString())
 
             }
 
@@ -167,78 +164,8 @@ class SimonsaysActivity : AppCompatActivity() {
             }.start()
         }.start()
 
-        /*
-        val animationOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
-        //animationOut.startOffset = 1
-        //animationOut.duration = 2000
-        val animationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        //animationIn.duration = 2000
-        //animationIn.startOffset = 2000
-
-
-        val animset = AnimationSet(false)
-        animset.addAnimation(animationOut)
-        animset.addAnimation(animationIn)
-
-        if(correctSeq[animnumber] == 0)
-        {
-            green.startAnimation(animset)
-        }
-        if(correctSeq[animnumber] == 1)
-        {
-            yellow.startAnimation(animset)
-        }
-        if(correctSeq[animnumber] == 2)
-        {
-            blue.startAnimation(animset)
-        }
-        if(correctSeq[animnumber] == 3)
-        {
-            red.startAnimation(animset)
-        }
-
-        // Lyssna när anim är klar
-        doHighlight(animnumber +1)
-
-         */
-    }
-
-    /*
-    //Player lost or won the game
-    fun gameOver(newTitle: String) {
-        colors[count] = newTitle
-        title.text = newTitle
-        restart.visibility = View.VISIBLE
-        red.text = newTitle
-        yellow.text = newTitle
-        green.text = newTitle
-    }
-
-
-    //Update game based on user's choice
-    fun onCorrect(answer: String, classNum: Int) {
-        if (colors[count] == answer)
-        {
-            val intent = Intent(this@Red, activitiesArray[classNum])
-            if (count + 1 == colors.size) {
-                gameOver("YOU WIN!")
-            } else {
-                if (count == score){
-                    count = -1
-                    score ++
-                }
-                count++
-                intent.putStringArrayListExtra("colors", colors)
-                intent.putExtra("count", count)
-                intent.putExtra("score", score)
-                startActivity(intent)
-            }
-        }else if(restart.visibility != 0) {
-            gameOver("gameover")
-        }
-
 
     }
 
-     */
+
     }
