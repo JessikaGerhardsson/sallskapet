@@ -28,6 +28,9 @@ class DogActivity : AppCompatActivity() {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_dog)
 
+            Log.i("HEJ", animalsleft.size.toString())
+            Log.i("HEJ", "animals = ${animals.size.toString()}")
+
 
 
             val animal1 = Animal()
@@ -50,6 +53,7 @@ class DogActivity : AppCompatActivity() {
             animal2.imagenumber = R.drawable.dog4
             animal2.animalname = "4"
             animals.add(animal5)
+
             val animal6 = Animal()
             animal3.imagenumber = R.drawable.dog5
             animal3.animalname = "5"
@@ -117,6 +121,8 @@ class DogActivity : AppCompatActivity() {
 
 
 
+
+
             animals.shuffle()
 
             animalsleft = animals.toList().toMutableList()
@@ -124,10 +130,10 @@ class DogActivity : AppCompatActivity() {
             //var correctanswer = mutableListOf<Int>()
             //correctanswer.add((0..2).random())
 
-
-            val ord1 = findViewById<TextView>(R.id.ord1)
-            val ord2 = findViewById<TextView>(R.id.ord2)
-            val ord3 = findViewById<TextView>(R.id.ord3)
+            var bild1 = findViewById<ImageView>(R.id.bild)
+            var ord1 = findViewById<TextView>(R.id.ord1)
+            var ord2 = findViewById<TextView>(R.id.ord2)
+            var ord3 = findViewById<TextView>(R.id.ord3)
 
             newword()
 
@@ -174,6 +180,8 @@ class DogActivity : AppCompatActivity() {
             findViewById<Button>(R.id.newGameButton).setOnClickListener {
                 newGame()
             }
+
+
         }
 
         fun correctword()
@@ -186,7 +194,7 @@ class DogActivity : AppCompatActivity() {
             {
                 //Slut på djur
                 Log.i("HEJ", "SLUT")
-                gameOver()
+                //gameOver()
             } else {
                 newword()
             }
@@ -195,6 +203,7 @@ class DogActivity : AppCompatActivity() {
         fun wrongword()
         {
             Log.i("PIXDEBUG", "FEL")
+
             animalsleft.removeAt(0)
             Toast.makeText(this, "Fel svar", Toast.LENGTH_LONG).show()
 
@@ -206,10 +215,16 @@ class DogActivity : AppCompatActivity() {
             } else {
                 newword()
             }
+
+
         }
 
         fun newword()
         {
+
+            Log.i("HEJ", "newword: ${animalsleft.size.toString()}")
+            Log.i("HEJ", "newword: animals = ${animals.size.toString()}")
+
             var bild1 = findViewById<ImageView>(R.id.bild)
             var ord1 = findViewById<TextView>(R.id.ord1)
             var ord2 = findViewById<TextView>(R.id.ord2)
@@ -232,14 +247,14 @@ class DogActivity : AppCompatActivity() {
             }
             if(correctPosition == 1)
             {
-                ord1.text = wrongAnimal2.animalname
+                ord1.text = wrongAnimal1.animalname
                 ord2.text = animalsleft[0].animalname
-                ord3.text = wrongAnimal1.animalname
+                ord3.text = wrongAnimal2.animalname
             }
             if(correctPosition == 2)
             {
-                ord1.text = wrongAnimal2.animalname
-                ord2.text = wrongAnimal1.animalname
+                ord1.text = wrongAnimal1.animalname
+                ord2.text = wrongAnimal2.animalname
                 ord3.text = animalsleft[0].animalname
             }
 
@@ -278,5 +293,7 @@ class DogActivity : AppCompatActivity() {
 
         newword()
     }
+
+
 
     }

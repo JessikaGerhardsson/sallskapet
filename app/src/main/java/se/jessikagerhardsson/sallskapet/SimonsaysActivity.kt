@@ -1,5 +1,6 @@
 package se.jessikagerhardsson.sallskapet
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,19 +8,32 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 class SimonsaysActivity : AppCompatActivity() {
     var correctSeq = mutableListOf<Int>()
     var playerSeq = mutableListOf<Int>()
     var hej = 0
+    var playerTurn = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simonsays)
 
 
+        var infotext = findViewById<TextView>(R.id.infoTextView)
+
+        if (playerTurn)
+        {
+            infotext.text = "DIN TUR"
+        } else {
+            infotext.text = "VÄNTA"
+        }
+
+
 
         newGame()
+
 
         findViewById<Button>(R.id.restartBtn).setOnClickListener {
             newGame()
@@ -110,6 +124,7 @@ class SimonsaysActivity : AppCompatActivity() {
         {
             // Visa text "din tur"
             // playerturn = true
+                playerTurn = true
 
             return
         }
@@ -146,11 +161,34 @@ class SimonsaysActivity : AppCompatActivity() {
             }.withEndAction {
                 doHighlight(animnumber +1)
             }.start()
+
         }.start()
 
 
 
 
+
+
+
+
+    }
+
+    fun gameOver()
+    {
+        Log.i("HEJ", "Spelet är slut")
+        var builder = AlertDialog.Builder(this)
+        builder.setTitle("Du förlorade")
+        builder.setMessage("Du tryckte på fel färg")
+        builder.setPositiveButton("Nytt spel", DialogInterface.OnClickListener { dialogInterface, i ->
+            newGame()
+
+        })
+        builder.setNegativeButton("Meny", DialogInterface.OnClickListener { dialogInterface, i ->
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        })
+        var alert = builder.create()
+        alert.show()
     }
 
 
@@ -178,9 +216,7 @@ class SimonsaysActivity : AppCompatActivity() {
         scoreText.text = hej.toString()
 
 
-        var infotext = findViewById<TextView>(R.id.infoTextView)
 
-        infotext.text = "VÄNTA"
 
 
         correctSeq.add((0..3).random())
