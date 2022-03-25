@@ -25,13 +25,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        //bokstav mot ord
-        //Chinchilla
-        val match = findViewById<ImageView>(R.id.matchImageView)
-        match.setOnClickListener {
-            val intent = Intent(this, ChoosehittaparenActivity::class.java)
-            startActivity(intent)
-        }
+
 
 
 
