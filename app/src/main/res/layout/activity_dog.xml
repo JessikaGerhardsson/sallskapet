@@ -31,7 +31,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bild" />
+        app:layout_constraintTop_toBottomOf="@+id/bild"
+        tools:text="20" />
 
     <TextView
         android:id="@+id/ord2"
@@ -45,7 +46,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ord1" />
+        app:layout_constraintTop_toBottomOf="@+id/ord1"
+        tools:text="19" />
 
     <TextView
         android:id="@+id/ord3"
@@ -59,7 +61,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ord2" />
+        app:layout_constraintTop_toBottomOf="@+id/ord2"
+        tools:text="18" />
 
     <Button
         android:id="@+id/newGameButton"

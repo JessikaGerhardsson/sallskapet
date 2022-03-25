@@ -48,28 +48,43 @@ class SimonsaysActivity : AppCompatActivity() {
         green.setOnClickListener {
 
             //onCorrect("Green",0)
+            if(playerTurn)
+            {
+                playerSeq.add(0)
+                checkCorrect()
+            }
 
-            playerSeq.add(0)
-            checkCorrect()
         }
 
         yellow.setOnClickListener {
 
             //onCorrect("Yellow", 1)
-            playerSeq.add(1)
-            checkCorrect()
+
+            if(playerTurn)
+            {
+                playerSeq.add(1)
+                checkCorrect()
+            }
         }
 
         blue.setOnClickListener {
             //onCorrect("Blue", 2)
-            playerSeq.add(2)
-            checkCorrect()
+
+            if(playerTurn)
+            {
+                playerSeq.add(2)
+                checkCorrect()
+            }
         }
 
         red.setOnClickListener {
             //onCorrect("Red", 3)
-            playerSeq.add(3)
-            checkCorrect()
+
+            if(playerTurn)
+            {
+                playerSeq.add(3)
+                checkCorrect()
+            }
         }
 
 
@@ -111,6 +126,7 @@ class SimonsaysActivity : AppCompatActivity() {
 
         } else {
             // VISA FÖRLORA
+                gameOver()
             Toast.makeText(this, "YOU LOSE", Toast.LENGTH_SHORT).show()
             hej = 0
             findViewById<TextView>(R.id.scoreText).text = hej.toString()
@@ -124,9 +140,14 @@ class SimonsaysActivity : AppCompatActivity() {
         {
             // Visa text "din tur"
             // playerturn = true
-                playerTurn = true
+            playerTurn = true
+
+            findViewById<TextView>(R.id.infoTextView).text = "Din tur"
 
             return
+        } else {
+            playerTurn = false
+            findViewById<TextView>(R.id.infoTextView).text = "Vänta"
         }
 
 
@@ -178,7 +199,7 @@ class SimonsaysActivity : AppCompatActivity() {
         Log.i("HEJ", "Spelet är slut")
         var builder = AlertDialog.Builder(this)
         builder.setTitle("Du förlorade")
-        builder.setMessage("Du tryckte på fel färg")
+        builder.setMessage("Du tryckte på fel färg \nDin poäng blev: ${hej.toString()}")
         builder.setPositiveButton("Nytt spel", DialogInterface.OnClickListener { dialogInterface, i ->
             newGame()
 
